@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unfiltered Me｜真實自我小幫手</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link rel="icon" href="app-icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="creator-gate" id="creatorGate" aria-labelledby="creatorTitle" role="dialog" aria-modal="true">
+      <section class="creator-intro creator-panel" id="creatorIntroStep" aria-labelledby="introTitle">
+        <div class="creator-intro-copy">
+          <p class="eyebrow">Meet your companion</p>
+          <div class="intro-title-row">
+            <h1 id="introTitle">認識<br>小真獸</h1>
+            <div class="intro-welcome-figure" id="introWelcomeFigure" aria-hidden="true"></div>
+          </div>
+          <p class="lead" id="introLead">小真獸不是普通寵物，而是你「真實自我」的陪伴者。它會陪你把每天那些沒有被好好說出的感受，一點一點找回來。</p>
+          <div class="intro-badges" id="introBadges"></div>
+          <div class="intro-steps" id="introSteps"></div>
+          <div class="creator-intro-actions">
+            <button class="ghost-button" type="button" id="introPrevButton">上一張</button>
+            <button class="primary-button" type="button" id="introNextButton">下一張</button>
+          </div>
+          <div class="creator-intro-foot">
+            <button class="text-button" type="button" id="skipIntroButton">略過介紹，直接設定</button>
+            <button class="text-button" type="button" id="startCustomizeButton">開始創造小真獸</button>
+          </div>
+        </div>
+        <div class="creator-intro-stage panel-soft">
+          <div class="creator-intro-preview" id="introPreview"></div>
+          <div class="intro-scene-note">
+            <p class="eyebrow" id="introSceneEyebrow">Intro Scene</p>
+            <h3 id="introSceneTitle">小真獸是什麼？</h3>
+            <p id="introSceneText">它會陪你記錄公我、私我、身體感受與真實碎片，幫你在社群和 AI 時代重新辨認自己。</p>
+          </div>
+          <div class="intro-locations" id="introLocations"></div>
+        </div>
+      </section>
+
+      <div class="creator-card creator-panel" id="creatorCustomizerStep">
+        <div class="creator-copy">
+          <p class="eyebrow">Create your companion</p>
+          <h1 id="creatorTitle">先創造你的<br />小真獸</h1>
+          <p class="lead">小真獸不是普通寵物，而是你「真實自我」的視覺化。你可以先選擇牠的基礎外型，之後牠會依照你的公我、私我、Ego Battery 與真實碎片產生狀態式變化。</p>
+          <div class="creator-preview-stage" id="creatorPreview"></div>
+          <p class="creator-note">你可以之後在主畫面右上角重新設計小真獸。</p>
+        </div>
+
+        <form class="creator-form" id="profileForm">
+          <div class="form-block">
+            <h2>外型設定</h2>
+            <label class="name-field">
+              <span>替小真獸取一個名字</span>
+              <input id="creatureName" maxlength="12" placeholder="例如：小真獸、Mimi、小綠" />
+            </label>
+          </div>
+
+          <fieldset class="choice-block">
+            <legend>小真獸顏色</legend>
+            <div class="choice-grid" data-choice-group="color"></div>
+          </fieldset>
+
+          <fieldset class="choice-block">
+            <legend>身體形狀</legend>
+            <div class="choice-grid" data-choice-group="shape"></div>
+          </fieldset>
+
+          <fieldset class="choice-block">
+            <legend>眼睛</legend>
+            <div class="choice-grid" data-choice-group="eyes"></div>
+          </fieldset>
+
+          <fieldset class="choice-block">
+            <legend>耳朵／角／觸角</legend>
+            <div class="choice-grid" data-choice-group="feature"></div>
+          </fieldset>
+
+          <fieldset class="choice-block">
+            <legend>配件</legend>
+            <div class="choice-grid" data-choice-group="accessory"></div>
+          </fieldset>
+
+          <fieldset class="choice-block">
+            <legend>主要個性</legend>
+            <div class="choice-grid" data-choice-group="personality"></div>
+          </fieldset>
+
+          <div class="creator-actions">
+            <button class="primary-button" type="submit">開始照顧真實的自己</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="app-shell" id="appShell">
+      <aside class="sidebar" aria-label="主要導覽">
+        <div class="brand">
+          <div class="brand-mark" id="brandMark" aria-hidden="true"></div>
+          <div>
+            <p class="eyebrow">Digital Authenticity Lab</p>
+            <h1>Unfiltered Me</h1>
+          </div>
+        </div>
+
+        <nav class="nav-list">
+          <button class="nav-item active" type="button" data-view="home" aria-current="page"><span class="nav-mascot" aria-hidden="true"></span>企劃首頁</button>
+          <button class="nav-item" type="button" data-view="checkin"><span class="nav-mascot" aria-hidden="true"></span>今日 Check-in</button>
+          <button class="nav-item" type="button" data-view="creature"><span class="nav-mascot" aria-hidden="true"></span>小真獸</button>
+          <button class="nav-item" type="button" data-view="fragments"><span class="nav-mascot" aria-hidden="true"></span>真實碎片</button>
+          <button class="nav-item" type="button" data-view="tasks"><span class="nav-mascot" aria-hidden="true"></span>反演算法任務</button>
+          <button class="nav-item" type="button" data-view="garden"><span class="nav-mascot" aria-hidden="true"></span>真實自我花園</button>
+          <button class="nav-item" type="button" data-view="report"><span class="nav-mascot" aria-hidden="true"></span>本週報告</button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <p>不是讓 AI 告訴我是誰，而是讓 AI 陪我找回我是誰。</p>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow" id="todayLabel">今日</p>
+            <h2 id="viewTitle">企劃首頁</h2>
+          </div>
+          <div class="top-actions">
+            <button class="ghost-button" id="editCreatureButton" type="button">重新設計小真獸</button>
+            <button class="ghost-button" id="demoButton" type="button">載入示範資料</button>
+            <button class="ghost-button danger" id="resetButton" type="button">清除資料</button>
+          </div>
+        </header>
+
+        <section class="view active" id="view-home" aria-labelledby="home-heading">
+          <div class="hero-panel">
+            <div class="hero-copy">
+              <p class="eyebrow">Final Project Prototype</p>
+              <h3 id="home-heading">數位真實性實驗室：社交媒體時代的「自我」重構計畫</h3>
+              <p class="lead">Unfiltered Me 是一款反濾鏡自我觀察 App，透過公我與私我的對照、Ego Battery、小真獸狀態式變化、反演算法任務與真實自我花園，幫助使用者在 AI 與社群媒體時代重新辨認真實的自己。</p>
+              <div class="hero-buttons">
+                <button class="primary-button" type="button" data-view-shortcut="checkin">開始今日 Check-in</button>
+                <button class="text-button" type="button" data-view-shortcut="creature">觀看小真獸狀態</button>
+              </div>
+            </div>
+            <div class="hero-creature" id="heroCreature"></div>
+          </div>
+
+          <div class="insight-grid">
+            <article class="info-card accent-blue">
+              <p class="eyebrow">Core Problem</p>
+              <h4>被優化的自我</h4>
+              <p>社群媒體與 AI 濾鏡讓人越來越擅長呈現「看起來很好」的版本，卻可能忽略真正的感受。</p>
+            </article>
+            <article class="info-card accent-coral">
+              <p class="eyebrow">Core Insight</p>
+              <h4>公我與私我的落差</h4>
+              <p>自我焦慮常來自「我對外呈現的樣子」與「我內心實際感受到的自己」之間的距離。</p>
+            </article>
+            <article class="info-card accent-green">
+              <p class="eyebrow">Solution</p>
+              <h4>小真獸狀態式陪伴</h4>
+              <p>小真獸不是裝飾角色，而是一面會變化的鏡子，依照使用者的狀態呈現雙影子、能量光、感官光點與休息模式。</p>
+            </article>
+          </div>
+
+          <div class="module-map panel">
+            <div class="section-heading">
+              <p class="eyebrow">Product Modules</p>
+              <h3>四大產品模組</h3>
+            </div>
+            <div class="module-grid">
+              <article><strong>每日真實碎片</strong><span>1 分鐘 Check-in，留下公我、私我、身體訊號與真實一句話。</span></article>
+              <article><strong>小真獸狀態式陪伴</strong><span>先客製外型，後續依照落差、能量與修飾語動態變化。</span></article>
+              <article><strong>反演算法任務</strong><span>不拍照、反推薦、五感採集、慢回覆等任務，幫助拿回選擇權。</span></article>
+              <article><strong>真實自我花園與回顧</strong><span>把每次真實紀錄轉化成花園植物與週報，形成長期投入。</span></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="view-checkin" aria-labelledby="checkin-heading">
+          <div class="split-grid">
+            <form class="panel checkin-form" id="checkinForm">
+              <div class="section-heading">
+                <p class="eyebrow">1 minute anti-filter check-in</p>
+                <h3 id="checkin-heading">收集今天的一片真實</h3>
+                <p>不用寫得漂亮，只要留下今天最誠實的一小段就好。</p>
+              </div>
+
+              <label class="field">
+                <span>我今天對外展現了什麼樣子？</span>
+                <textarea id="publicSelf" rows="3" placeholder="例如：我看起來很積極、很配合、都可以。"></textarea>
+              </label>
+
+              <label class="field">
+                <span>我內心其實是什麼感覺？</span>
+                <textarea id="privateSelf" rows="3" placeholder="例如：我其實很疲憊，也有一點疏離。"></textarea>
+              </label>
+
+              <label class="field">
+                <span>我的身體今天告訴我什麼？</span>
+                <textarea id="bodySignal" rows="3" placeholder="例如：肩膀很緊、呼吸有點淺、聞到雨後的味道。"></textarea>
+              </label>
+
+              <label class="field">
+                <span>今天有哪一刻，我感覺自己不像自己？</span>
+                <textarea id="unlikeMoment" rows="3" placeholder="例如：明明不想答應，卻很快說了沒關係。"></textarea>
+              </label>
+
+              <div class="checkin-limit-message" id="checkinLimitMessage"></div>
+              <div class="form-actions">
+                <button class="primary-button" type="submit" id="checkinSubmitButton">生成真實碎片</button>
+              </div>
+            </form>
+
+            <aside class="panel live-preview">
+              <div class="section-heading">
+                <p class="eyebrow">Live Companion</p>
+                <h3>今天的小真獸</h3>
+              </div>
+              <div id="creaturePreview"></div>
+              <div class="companion-copy" id="companionCopy"></div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="view" id="view-creature" aria-labelledby="creature-heading">
+          <div class="panel creature-page">
+            <div class="section-heading inline-heading">
+              <div>
+                <p class="eyebrow">State-based Companion</p>
+                <h3 id="creature-heading">小真獸狀態式陪伴</h3>
+                <p>小真獸會保留你選的可愛外型，並依照公我與私我的落差、Ego Battery、身體感官與真話提醒產生狀態式變化。</p>
+              </div>
+              <button class="text-button" type="button" id="editCreatureInline">編輯造型</button>
+            </div>
+            <div class="creature-detail-grid">
+              <div id="creatureLarge"></div>
+              <div class="status-stack" id="creatureStatus"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="view-fragments" aria-labelledby="fragments-heading">
+          <div class="panel">
+            <div class="section-heading inline-heading">
+              <div>
+                <p class="eyebrow">Daily Fragments</p>
+                <h3 id="fragments-heading">真實碎片卡片</h3>
+              </div>
+              <span class="count-pill" id="entryCount">0 片</span>
+            </div>
+            <div class="fragment-progress-panel" id="fragmentProgress"></div>
+            <div class="fragment-list" id="fragmentList"></div>
+          </div>
+        </section>
+
+        <section class="view" id="view-tasks" aria-labelledby="tasks-heading">
+          <div class="panel">
+            <div class="section-heading">
+              <p class="eyebrow">Anti-algorithm Missions</p>
+              <h3 id="tasks-heading">不定期反演算法任務</h3>
+              <p>任務不是為了打卡，而是讓使用者短暫離開演算法邏輯，重新回到身體、選擇與真實關係。</p>
+            </div>
+            <div class="task-grid" id="taskGrid"></div>
+          </div>
+        </section>
+
+        <section class="view" id="view-garden" aria-labelledby="garden-heading">
+          <div class="panel garden-panel">
+            <div class="section-heading inline-heading">
+              <div>
+                <p class="eyebrow">Authentic Self Garden</p>
+                <h3 id="garden-heading">真實自我花園</h3>
+              </div>
+              <span class="count-pill" id="gardenCount">0 個生長物</span>
+            </div>
+            <div class="garden-dashboard" id="gardenDashboard"></div>
+            <div class="garden-field" id="gardenField"></div>
+            <div class="garden-legend" id="gardenLegend"></div>
+          </div>
+        </section>
+
+        <section class="view" id="view-report" aria-labelledby="report-heading">
+          <div class="panel">
+            <div class="section-heading">
+              <p class="eyebrow">Weekly Reflection</p>
+              <h3 id="report-heading">小真獸本週成長報告</h3>
+            </div>
+            <div class="report-grid" id="reportGrid"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <nav class="bottom-nav" aria-label="手機導覽">
+      <button class="bottom-item active" type="button" data-view="home">首頁</button>
+      <button class="bottom-item" type="button" data-view="checkin">記錄</button>
+      <button class="bottom-item" type="button" data-view="creature">小真獸</button>
+      <button class="bottom-item" type="button" data-view="fragments">碎片</button>
+      <button class="bottom-item" type="button" data-view="tasks">任務</button>
+      <button class="bottom-item" type="button" data-view="garden">花園</button>
+      <button class="bottom-item" type="button" data-view="report">週報</button>
+    </nav>
+
+
+    <div class="fragment-modal" id="fragmentModal" aria-hidden="true">
+      <div class="fragment-modal-backdrop" data-fragment-close></div>
+      <div class="fragment-modal-card" role="dialog" aria-modal="true" aria-labelledby="fragmentModalTitle">
+        <button class="fragment-modal-close" type="button" id="fragmentModalClose" aria-label="關閉" data-modal-action="close" onclick="closeFragmentModal()">×</button>
+        <div class="fragment-modal-content" id="fragmentModalContent"></div>
+        <div class="fragment-modal-actions">
+          <button class="ghost-button" type="button" id="fragmentPrev" data-modal-action="prev" onclick="stepFragmentModal(-1)">上一片</button>
+          <button class="ghost-button" type="button" id="fragmentNext" data-modal-action="next" onclick="stepFragmentModal(1)">下一片</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
